@@ -14,16 +14,34 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Ro
+
 Route::get('/', function () {
-    // $user = User::with('role')->get();
-    // dd($user);
-    return view('welcome');
+    return redirect(route('login'));
 });
+Auth::routes([
+    'register' => false
+]);
 
-Route::group(['middleware' => ['role:Admin,Manager']], function () {
-    // Definisikan route untuk halaman yang hanya bisa diakses oleh admin dan manager di sini.
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-});
+Route::get('/dashboard',     [App\Http\Controllers\HomeController::class, 'index'])
+    ->name('dashboard');
 
-Auth::routes();
+Route::resource('user', App\Http\Controllers\UserController::class);
+Route::resource('gudang', App\Http\Controllers\GudangController::class);
+Route::resource('item', App\Http\Controllers\ItemController::class);
+Route::resource('transaksi/masuk', App\Http\Controllers\TrxMasukController::class)->except([
+    'show',
+    'edit',
+    'update',
+    'detroy',
+]);
+Route::resource('transaksi/keluar', App\Http\Controllers\TrxKeluarController::class)->except([
+    'show',
+    'edit',
+    'update',
+    'detroy',
+]);
+Route::resource('transaksi', App\Http\Controllers\TrxController::class)->except([
+    'create',
+    'store',
+    'update',
+]);

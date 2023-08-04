@@ -3,8 +3,8 @@
 @section('content')
     <div class="container">
         @include('layouts.sidebar')
-        <div class="row justify-content-center mt-3">
-            <div class="col-12 col-lg-10">
+        <div class="row justify-content-center">
+            {{-- <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Dashboard') }}</div>
                     <div class="card-body">
@@ -17,7 +17,7 @@
                         {{ __('You are logged in!') }}
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection
