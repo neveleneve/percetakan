@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
 class TrxController extends Controller
@@ -17,7 +18,10 @@ class TrxController extends Controller
 
     public function index()
     {
-        return view('pages.transaksi.index');
+        $transaksi = Transaksi::paginate(10);
+        return view('pages.transaksi.index', [
+            'transaksi' => $transaksi
+        ]);
     }
 
     public function create()

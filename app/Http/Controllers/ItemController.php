@@ -34,7 +34,8 @@ class ItemController extends Controller
     {
         $validasi = Validator::make($request->all(), [
             'name' => ['required'],
-            'satuan' => ['required']
+            'satuan' => ['required'],
+            'harga' => ['required', 'numeric']
         ]);
         if ($validasi->fails()) {
             return redirect(route('item.create'))->with([
@@ -80,6 +81,7 @@ class ItemController extends Controller
         $validasi = Validator::make($request->all(), [
             'name' => ['required'],
             'satuan' => ['required'],
+            'harga' => ['required', 'numeric'],
         ]);
         if ($validasi->fails()) {
             return redirect(route('item.edit', ['item' => $item->id]))->with([

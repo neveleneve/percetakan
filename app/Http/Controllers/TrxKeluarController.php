@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
 class TrxKeluarController extends Controller
 {
     public function index()
     {
-        return view('pages.transaksi.keluar.index');
+        $transaksi = Transaksi::where('tipe_transaksi', 'keluar')->paginate(10);
+        return view('pages.transaksi.keluar.index', [
+            'transaksi' => $transaksi
+        ]);
     }
 
     public function create()

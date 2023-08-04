@@ -37,6 +37,11 @@
                                     placeholder="Nama Satuan Item" value="{{ $item->satuan }}" required>
                             </div>
                             <div class="col-12 col-lg-10 text-center mb-3">
+                                <label for="harga" class="fw-bold mb-2">Harga Item</label>
+                                <input type="number" name="harga" id="harga" class="form-control form-control-sm"
+                                    placeholder="Harga Item" value="{{ $item->harga }}" required>
+                            </div>
+                            <div class="col-12 col-lg-10 text-center mb-3">
                                 <div class="d-grid gap-2">
                                     <button class="btn btn-sm btn-outline-success fw-bold" type="submit">
                                         Edit Item

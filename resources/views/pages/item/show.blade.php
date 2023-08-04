@@ -36,6 +36,12 @@
                                 </p>
                             </div>
                             <div class="col-12 col-lg-10 text-center mb-3">
+                                <label for="harga" class="fw-bold mb-2">Satuan</label>
+                                <p>
+                                    {{ number_format($item->harga, 0, ',', '.') }}
+                                </p>
+                            </div>
+                            <div class="col-12 col-lg-10 text-center mb-3">
                                 <label for="stok" class="fw-bold mb-2">Stok Item</label>
                                 <p>
                                     {{ $item->stok }}

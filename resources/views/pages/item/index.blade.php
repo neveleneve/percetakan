@@ -28,6 +28,7 @@
                                     <th>#</th>
                                     <th>Nama</th>
                                     <th>Satuan</th>
+                                    <th>Harga</th>
                                     <th>Stok</th>
                                     @if (Auth::user()->role->name == 'Admin')
                                         <th></th>
@@ -40,6 +41,7 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->satuan }}</td>
+                                        <td>{{ number_format($item->harga, 0, ',', '.') }}</td>
                                         <td>{{ $item->stok }}</td>
                                         @if (Auth::user()->role->name == 'Admin')
                                             <td>
@@ -56,15 +58,9 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        @if (Auth::user()->role->name == 'Admin')
-                                            <td colspan="5">
-                                                <h6 class="fw-bold text-center h4">Data Kosong</h6>
-                                            </td>
-                                        @else
-                                            <td colspan="4">
-                                                <h6 class="fw-bold text-center h4">Data Kosong</h6>
-                                            </td>
-                                        @endif
+                                        <td colspan="{{ Auth::user()->role->name == 'Admin' ? '6' : '5' }}">
+                                            <h6 class="fw-bold text-center h4">Data Kosong</h6>
+                                        </td>
                                     </tr>
                                 @endforelse
                             </tbody>
