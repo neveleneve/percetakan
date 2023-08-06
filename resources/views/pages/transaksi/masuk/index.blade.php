@@ -16,18 +16,34 @@
                             </div>
                         @endif
                         @include('layouts.transaksi')
-                        @if (Auth::user()->role->name == 'Admin')
-                            <div class="d-grid gap-2 mb-3">
-                                <a href="{{ route('masuk.create') }}" class="btn btn-sm btn-outline-success fw-bold">
-                                    Tambah Transaksi Masuk
-                                </a>
-                            </div>
-                        @endif
+                        <div class="row">
+                            @if (Auth::user()->role->name == 'Admin')
+                                <div class="col-12 col-lg">
+                                    <div class="d-grid gap-2 mb-3">
+                                        <a href="{{ route('masuk.create') }}"
+                                            class="btn btn-sm btn-outline-success fw-bold">
+                                            Tambah Transaksi Masuk
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+                            @if (Auth::user()->role->name == 'Admin' || Auth::user()->role->name == 'Manager')
+                                <div class="col-12 col-lg">
+                                    <div class="d-grid gap-2 mb-3">
+                                        <a href="{{ route('laporan.masuk') }}"
+                                            class="btn btn-sm btn-outline-danger fw-bold">
+                                            Laporan Transaksi Masuk
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
                         <table class="table table-bordered text-center">
                             <thead class="table-success">
                                 <tr>
                                     <th>#</th>
                                     <th>Kode Transaksi</th>
+                                    <th>Asal</th>
                                     {{-- <th>Harga</th> --}}
                                     <th></th>
                                 </tr>
@@ -37,6 +53,7 @@
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $item->kode_transaksi }}</td>
+                                        <td>{{ $item->gudang->name }}</td>
                                         {{-- <td>Rp {{ number_format($item->total_transaksi, 0, ',', '.') }}</td> --}}
                                         <td>
                                             <a href="{{ route('transaksi.show', ['transaksi' => $item->id]) }}"

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Gudang;
 use App\Models\Item;
 use Livewire\Component;
 
@@ -14,6 +15,7 @@ class TransaksiMasuk extends Component
         'name' => 'Transaksi Masuk'
     ];
     public $items;
+    public $gudang;
     public $selecteditems;
 
     public function render()
@@ -28,6 +30,7 @@ class TransaksiMasuk extends Component
 
     public function mount()
     {
+        $this->gudang = Gudang::get();
         $items = Item::get();
         for ($i = 0; $i < count($items); $i++) {
             $this->selecteditems[$items[$i]->id] = 0;

@@ -16,13 +16,28 @@
                             </div>
                         @endif
                         @include('layouts.transaksi')
-                        @if (Auth::user()->role->name != 'Manager')
-                            <div class="d-grid gap-2 mb-3">
-                                <a href="{{ route('keluar.create') }}" class="btn btn-sm btn-outline-success fw-bold">
-                                    Tambah Transaksi Keluar
-                                </a>
-                            </div>
-                        @endif
+                        <div class="row">
+                            @if (Auth::user()->role->name == 'Admin' || Auth::user()->role->name == 'User')
+                                <div class="col-12 col-lg">
+                                    <div class="d-grid gap-2 mb-3">
+                                        <a href="{{ route('keluar.create') }}"
+                                            class="btn btn-sm btn-outline-success fw-bold">
+                                            Tambah Transaksi Keluar
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+                            @if (Auth::user()->role->name == 'Admin' || Auth::user()->role->name == 'Manager')
+                                <div class="col-12 col-lg">
+                                    <div class="d-grid gap-2 mb-3">
+                                        <a href="{{ route('laporan.keluar') }}"
+                                            class="btn btn-sm btn-outline-danger fw-bold">
+                                            Laporan Transaksi Keluar
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
                         <table class="table table-bordered text-center">
                             <thead class="table-success">
                                 <tr>

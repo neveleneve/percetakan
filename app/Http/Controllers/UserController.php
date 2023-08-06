@@ -13,11 +13,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:Admin')->only('index');
-        $this->middleware('role:Admin')->only('show');
-        $this->middleware('role:Admin')->only('edit', 'update');
-        $this->middleware('role:Admin')->only('destroy');
-        $this->middleware('role:Admin')->only('create', 'store');
+        $this->middleware('role:Admin')->only('index', 'show', 'edit', 'update', 'destroy', 'create', 'store');
     }
 
     public function index()

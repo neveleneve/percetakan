@@ -46,7 +46,9 @@ Route::resource('transaksi', App\Http\Controllers\TrxController::class)->except(
     'update',
 ]);
 
-Route::get('laporan/barang', [App\Http\Controllers\LaporanController::class, 'laporanDaftarBarang']);
-Route::get('laporan/gudang', [App\Http\Controllers\LaporanController::class, 'laporanDaftarGudang']);
-Route::get('laporan/transaksi/masuk', [App\Http\Controllers\LaporanController::class, 'laporanBarangMasuk']);
-Route::get('laporan/transaksi/keluar', [App\Http\Controllers\LaporanController::class, 'laporanBarangKeluar']);
+Route::get('laporan/barang', [App\Http\Controllers\LaporanController::class, 'laporanDaftarBarang'])->name('laporan.barang');
+Route::get('laporan/gudang', [App\Http\Controllers\LaporanController::class, 'laporanDaftarGudang'])->name('laporan.gudang');
+Route::get('laporan/transaksi/masuk', [App\Http\Controllers\LaporanController::class, 'laporanBarangMasuk'])->name('laporan.masuk');
+Route::get('laporan/transaksi/keluar', [App\Http\Controllers\LaporanController::class, 'laporanBarangKeluar'])->name('laporan.keluar');
+
+Route::get('laporan/cetak', [App\Http\Controllers\LaporanController::class, 'cetak']);

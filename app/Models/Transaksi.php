@@ -13,16 +13,22 @@ class Transaksi extends Model
         'user_id',
         'kode_transaksi',
         'tipe_transaksi',
+        'gudang_id',
         'total_transaksi',
     ];
 
     public function user()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function detail()
     {
-        $this->hasMany(DetailTransaksi::class);
+        return $this->hasMany(DetailTransaksi::class);
+    }
+
+    public function gudang()
+    {
+        return $this->belongsTo(Gudang::class);
     }
 }

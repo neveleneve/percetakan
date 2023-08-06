@@ -9,10 +9,8 @@ class TrxController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->only('index');
-        $this->middleware('auth')->only('show');
-        $this->middleware('role:Admin')->only('edit');
-        $this->middleware('role:Admin')->only('destroy');
+        $this->middleware('auth')->only('index', 'show');
+        $this->middleware('role:Admin')->only('edit', 'destroy');
     }
 
     public function index()
