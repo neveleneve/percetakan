@@ -16,4 +16,9 @@ class DetailTransaksi extends Model
         'harga',
         'sub_total',
     ];
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
 }

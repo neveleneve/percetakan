@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class LaporanController extends Controller
 {
@@ -34,6 +35,22 @@ class LaporanController extends Controller
 
     public function cetak(Request $request)
     {
-        // 
+        $validator = Validator::make($request->all(), [
+            'type' => 'required'
+        ]);
+        if ($validator->fails()) {
+            # code...
+        } else {
+            $tipe = $request->type;
+            if ($tipe == 'masuk') {
+                # code...
+            } else if ($tipe == 'keluar') {
+                # code...
+            } else if ($tipe == 'barang') {
+                # code...
+            } else if ($tipe == 'gudang') {
+                # code...
+            }
+        }
     }
 }
