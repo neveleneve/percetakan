@@ -27,9 +27,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nama</th>
-                                    @if (Auth::user()->role->name == 'Admin')
-                                        <th></th>
-                                    @endif
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,30 +35,24 @@
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $item->name }}</td>
-                                        @if (Auth::user()->role->name == 'Admin')
-                                            <td>
-                                                <a href="{{ route('gudang.show', ['gudang' => $item->id]) }}"
-                                                    class="btn btn-sm btn-outline-success">
-                                                    <i class="fa fa-eye"></i>
-                                                </a>
+                                        <td>
+                                            <a href="{{ route('gudang.show', ['gudang' => $item->id]) }}"
+                                                class="btn btn-sm btn-outline-success">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            @if (Auth::user()->role->name == 'Admin')
                                                 <a href="{{ route('gudang.edit', ['gudang' => $item->id]) }}"
                                                     class="btn btn-sm btn-outline-danger">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                            </td>
-                                        @endif
+                                            @endif
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        @if (Auth::user()->role->name == 'Admin')
-                                            <td colspan="3">
-                                                <h6 class="fw-bold text-center h4">Data Kosong</h6>
-                                            </td>
-                                        @else
-                                            <td colspan="2">
-                                                <h6 class="fw-bold text-center h4">Data Kosong</h6>
-                                            </td>
-                                        @endif
+                                        <td colspan="3">
+                                            <h6 class="fw-bold text-center h4">Data Kosong</h6>
+                                        </td>
                                     </tr>
                                 @endforelse
                             </tbody>

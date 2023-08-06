@@ -23,6 +23,10 @@
                 <a class="nav-link{{ Request::is('transaksi*') ? ' active fw-bold' : ' text-dark' }}"
                     href="{{ route('transaksi.index') }}">Transaksi</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link{{ Request::is('laporan*') ? ' active fw-bold' : ' text-dark' }}"
+                    href="#">Laporan</a>
+            </li>
         </ul>
     </div>
 </div>

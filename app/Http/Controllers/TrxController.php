@@ -11,9 +11,8 @@ class TrxController extends Controller
     {
         $this->middleware('auth')->only('index');
         $this->middleware('auth')->only('show');
-        $this->middleware('role:Admin')->only('edit', 'update');
+        $this->middleware('role:Admin')->only('edit');
         $this->middleware('role:Admin')->only('destroy');
-        $this->middleware('role:Admin')->only('create', 'store');
     }
 
     public function index()
@@ -24,33 +23,30 @@ class TrxController extends Controller
         ]);
     }
 
-    public function create()
+    public function show(Transaksi $transaksi)
     {
-        // no route
+        return view('pages.transaksi.show', [
+            'transaksi' => $transaksi
+        ]);
     }
 
-    public function store(Request $request)
+    public function edit(Transaksi $transaksi)
     {
-        // no route
+        return view('pages.transaksi.edit', [
+            'transaksi' => $transaksi
+        ]);
     }
 
-    public function show($id)
+    public function destroy(Transaksi $transaksi)
     {
-        return view('pages.transaksi.show');
-    }
-
-    public function edit($id)
-    {
-        return view('pages.transaksi.edit');
-    }
-
-    public function update(Request $request, $id)
-    {
-        // no route
-    }
-
-    public function destroy($id)
-    {
-        return redirect(route('transaksi.index'));
+        dd($transaksi);
+        // cek data untuk mengembalikan nilai item apakah dikurangi atau ditambah tergantung tipe transaksi
+        // 
+        // hapus data
+        $transaksi->delete();
+        return redirect(route('transaksi.index'))->with([
+            'message' => 'Data transaksi berhasil dihapus!',
+            'color' => 'success',
+        ]);
     }
 }

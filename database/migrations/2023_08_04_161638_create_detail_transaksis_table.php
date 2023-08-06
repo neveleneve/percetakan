@@ -17,9 +17,9 @@ class CreateDetailTransaksisTable extends Migration
             $table->id();
             $table->string('transaksi_id');
             $table->string('item_id');
-            $table->string('jumlah');
-            $table->string('harga');
-            $table->string('sub_total');
+            $table->integer('jumlah');
+            $table->integer('harga')->nullable()->default(0);
+            $table->integer('sub_total')->nullable()->default(0);
             $table->timestamps();
         });
     }

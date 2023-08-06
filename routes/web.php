@@ -32,16 +32,21 @@ Route::resource('transaksi/masuk', App\Http\Controllers\TrxMasukController::clas
     'show',
     'edit',
     'update',
-    'detroy',
+    'destroy',
 ]);
 Route::resource('transaksi/keluar', App\Http\Controllers\TrxKeluarController::class)->except([
     'show',
     'edit',
     'update',
-    'detroy',
+    'destroy',
 ]);
 Route::resource('transaksi', App\Http\Controllers\TrxController::class)->except([
     'create',
     'store',
     'update',
 ]);
+
+Route::get('laporan/barang', [App\Http\Controllers\LaporanController::class, 'laporanDaftarBarang']);
+Route::get('laporan/gudang', [App\Http\Controllers\LaporanController::class, 'laporanDaftarGudang']);
+Route::get('laporan/transaksi/masuk', [App\Http\Controllers\LaporanController::class, 'laporanBarangMasuk']);
+Route::get('laporan/transaksi/keluar', [App\Http\Controllers\LaporanController::class, 'laporanBarangKeluar']);
