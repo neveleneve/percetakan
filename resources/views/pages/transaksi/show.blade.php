@@ -7,7 +7,7 @@
             <div class="col-12 col-lg-10">
                 <div class="card">
                     <div class="card-header text-bg-success">
-                        <a href="{{ route('transaksi.index') }}" class="btn btn-sm btn-outline-light">
+                        <a href="{{ url()->previous() }}" class="btn btn-sm btn-outline-light">
                             <i class="fa fa-chevron-left"></i>
                         </a>
                         <span class="fw-bold">

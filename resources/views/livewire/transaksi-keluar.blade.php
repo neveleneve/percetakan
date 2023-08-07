@@ -23,7 +23,7 @@
                         <input type="text" name="kode_transaksi" id="kode_transaksi" required readonly
                             class="form-control form-control-sm text-center" wire:model='kode'>
                     </div>
-                    <div class="col-12 col-lg-10 text-center ">
+                    <div class="col-12 col-lg-10 text-center">
                         <label for="tipe_transaksi" class="fw-bold mb-2">Tipe Transaksi</label>
                         <input type="text" name="tipe_transaksi" id="tipe_transaksi" required readonly
                             wire:model='tipe.name' class="form-control form-control-sm text-center">

@@ -22,7 +22,7 @@
                                     <div class="d-grid gap-2 mb-3">
                                         <button class="btn btn-sm btn-outline-success fw-bold" data-bs-toggle="modal"
                                             data-bs-target="#modalLaporan">
-                                            Tambah Transaksi
+                                            Tambah Data Transaksi
                                         </button>
                                     </div>
                                 </div>
@@ -30,7 +30,7 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title fw-bold">Tambah Transaksi</h5>
+                                                <h5 class="modal-title fw-bold">Tambah Data Transaksi</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
@@ -39,12 +39,12 @@
                                                     @if (Auth::user()->role->name == 'Admin')
                                                         <a href="{{ route('masuk.create') }}"
                                                             class="btn btn-sm btn-outline-success fw-bold">
-                                                            Tambah Transaksi Masuk
+                                                            Tambah Data Transaksi Masuk
                                                         </a>
                                                     @endif
                                                     <a href="{{ route('keluar.create') }}"
                                                         class="btn btn-sm btn-outline-danger fw-bold">
-                                                        Tambah Transaksi Keluar
+                                                        Tambah Data Transaksi Keluar
                                                     </a>
                                                 </div>
                                             </div>
@@ -57,7 +57,7 @@
                                     <div class="d-grid gap-2 mb-3">
                                         <button class="btn btn-sm btn-outline-danger fw-bold" data-bs-toggle="modal"
                                             data-bs-target="#modalTransaksi">
-                                            Laporan Transaksi
+                                            Laporan Data Transaksi
                                         </button>
                                     </div>
                                 </div>
@@ -65,19 +65,19 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title fw-bold">Laporan Transaksi</h5>
+                                                <h5 class="modal-title fw-bold">Laporan Data Transaksi</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="d-grid gap-2">
-                                                    <a href="{{ route('masuk.create') }}"
+                                                    <a href="{{ route('laporan.masuk') }}"
                                                         class="btn btn-sm btn-outline-success fw-bold">
-                                                        Laporan Transaksi Masuk
+                                                        Laporan Data Transaksi Masuk
                                                     </a>
-                                                    <a href="{{ route('keluar.create') }}"
+                                                    <a href="{{ route('laporan.keluar') }}"
                                                         class="btn btn-sm btn-outline-danger fw-bold">
-                                                        Laporan Transaksi Keluar
+                                                        Laporan Data Transaksi Keluar
                                                     </a>
                                                 </div>
                                             </div>

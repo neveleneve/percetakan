@@ -16,10 +16,23 @@
                             </div>
                         @endif
                         @if (Auth::user()->role->name == 'Admin')
-                            <div class="d-grid gap-2 mb-3">
-                                <a href="{{ route('gudang.create') }}" class="btn btn-sm btn-outline-success fw-bold">
-                                    Tambah Gudang
-                                </a>
+                            <div class="row">
+                                <div class="col-12 col-lg">
+                                    <div class="d-grid gap-2 mb-3">
+                                        <a href="{{ route('gudang.create') }}"
+                                            class="btn btn-sm btn-outline-success fw-bold">
+                                            Tambah Data Gudang
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg">
+                                    <div class="d-grid gap-2 mb-3">
+                                        <a href="{{ route('laporan.gudang') }}"
+                                            class="btn btn-sm btn-outline-danger fw-bold">
+                                            Laporan Data Gudang
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         @endif
                         <div class="table-responsive">
