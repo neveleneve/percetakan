@@ -22,41 +22,43 @@
                                 </a>
                             </div>
                         @endif
-                        <table class="table table-bordered text-center">
-                            <thead class="table-success">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nama</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($gudang as $item)
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center text-nowrap">
+                                <thead class="table-success">
                                     <tr>
-                                        <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>
-                                            <a href="{{ route('gudang.show', ['gudang' => $item->id]) }}"
-                                                class="btn btn-sm btn-outline-success">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                            @if (Auth::user()->role->name == 'Admin')
-                                                <a href="{{ route('gudang.edit', ['gudang' => $item->id]) }}"
-                                                    class="btn btn-sm btn-outline-danger">
-                                                    <i class="fa fa-edit"></i>
+                                        <th>#</th>
+                                        <th>Nama</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($gudang as $item)
+                                        <tr>
+                                            <td>{{ $loop->index + 1 }}</td>
+                                            <td>{{ $item->name }}</td>
+                                            <td>
+                                                <a href="{{ route('gudang.show', ['gudang' => $item->id]) }}"
+                                                    class="btn btn-sm btn-outline-success">
+                                                    <i class="fa fa-eye"></i>
                                                 </a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="3">
-                                            <h6 class="fw-bold text-center h4">Data Kosong</h6>
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                                                @if (Auth::user()->role->name == 'Admin')
+                                                    <a href="{{ route('gudang.edit', ['gudang' => $item->id]) }}"
+                                                        class="btn btn-sm btn-outline-danger">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="3">
+                                                <h6 class="fw-bold text-center h4">Data Kosong</h6>
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

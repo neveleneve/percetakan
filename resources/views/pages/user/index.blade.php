@@ -20,43 +20,45 @@
                                 Tambah User
                             </a>
                         </div>
-                        <table class="table table-bordered text-center">
-                            <thead class="table-success">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nama</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($user as $item)
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center text-nowrap">
+                                <thead class="table-success">
                                     <tr>
-                                        <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->email }}</td>
-                                        <td>{{ $item->role->name }}</td>
-                                        <td>
-                                            <a href="{{ route('user.show', ['user' => $item->id]) }}"
-                                                class="btn btn-sm btn-outline-success">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                            <a href="{{ route('user.edit', ['user' => $item->id]) }}"
-                                                class="btn btn-sm btn-outline-danger">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                                        </td>
+                                        <th>#</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th></th>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="5">
-                                            <h6 class="fw-bold text-center h4">Data Kosong</h6>
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @forelse ($user as $item)
+                                        <tr>
+                                            <td>{{ $loop->index + 1 }}</td>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->email }}</td>
+                                            <td>{{ $item->role->name }}</td>
+                                            <td>
+                                                <a href="{{ route('user.show', ['user' => $item->id]) }}"
+                                                    class="btn btn-sm btn-outline-success">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <a href="{{ route('user.edit', ['user' => $item->id]) }}"
+                                                    class="btn btn-sm btn-outline-danger">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5">
+                                                <h6 class="fw-bold text-center h4">Data Kosong</h6>
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

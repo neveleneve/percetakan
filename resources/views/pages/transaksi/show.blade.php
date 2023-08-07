@@ -35,8 +35,14 @@
                                     Transaksi {{ ucwords($transaksi->tipe_transaksi) }}
                                 </p>
                             </div>
+                            <div class="col-12 col-lg-10 text-center mb-3">
+                                <label class="fw-bold mb-2">Penginput Data</label>
+                                <p>
+                                    {{ $transaksi->user->name }}
+                                </p>
+                            </div>
                             @if ($transaksi->tipe_transaksi == 'keluar')
-                                <div class="col-12 col-lg-10 text-center mb-3">
+                                <div class="col-12 col-lg-10 text-center">
                                     <label class="fw-bold mb-2">Total Transaksi</label>
                                     <p>
                                         Rp {{ number_format($transaksi->total_transaksi, 0, ',', '.') }}
@@ -44,20 +50,65 @@
                                 </div>
                             @endif
                             @if ($transaksi->tipe_transaksi == 'masuk')
-                                <div class="col-12 col-lg-10 text-center mb-3">
+                                <div class="col-12 col-lg-10 text-center">
                                     <label class="fw-bold mb-2">Asal Gudang</label>
                                     <p>
                                         {{ $transaksi->gudang->name }}
                                     </p>
                                 </div>
                             @endif
-                            <div class="col-12 col-lg-10 text-center">
-                                <label class="fw-bold mb-2">Penginput Data</label>
-                                <p>
-                                    {{ $transaksi->user->name }}
-                                </p>
-                                <hr>
-                            </div>
+                            {{-- tombol hapus --}}
+                            @if ($transaksi->id == $last_id->id)
+                                @if (Auth::user()->role->name == 'Admin' || Auth::user()->role->name == 'User')
+                                    @if ($transaksi->tipe_transaksi == 'masuk')
+                                        @if (Auth::user()->role->name == 'Admin')
+                                            <div class="col-12 col-lg-10 text-center">
+                                                <form
+                                                    action="{{ route('transaksi.destroy', ['transaksi' => $transaksi->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <input type="hidden" name="tipe_transaksi"
+                                                        value="{{ $transaksi->tipe_transaksi }}">
+                                                    <div class="d-grid gap-2">
+                                                        <button type="submit" class="btn btn-sm btn-outline-danger fw-bold"
+                                                            onclick="return confirm('Hapus data transaksi {{ $transaksi->kode_transaksi }}')">
+                                                            Hapus Transaksi
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                                <hr>
+                                            </div>
+                                        @endif
+                                    @elseif ($transaksi->tipe_transaksi == 'keluar')
+                                        <div class="col-12 col-lg-10 text-center">
+                                            <form
+                                                action="{{ route('transaksi.destroy', ['transaksi' => $transaksi->id]) }}"
+                                                method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <input type="hidden" name="tipe_transaksi"
+                                                    value="{{ $transaksi->tipe_transaksi }}">
+                                                <div class="d-grid gap-2">
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger fw-bold"
+                                                        onclick="return confirm('Hapus data transaksi {{ $transaksi->kode_transaksi }}')">
+                                                        Hapus Transaksi
+                                                    </button>
+                                                </div>
+                                            </form>
+                                            <hr>
+                                        </div>
+                                    @endif
+                                @else
+                                    <div class="col-12 col-lg-10 text-center">
+                                        <hr>
+                                    </div>
+                                @endif
+                            @else
+                                <div class="col-12 col-lg-10 text-center">
+                                    <hr>
+                                </div>
+                            @endif
                             <h4 class="fw-bold text-center mb-3">Detail Transaksi</h4>
                             <div class="col-12 col-lg-10 text-center mb-3">
                                 <div class="table-container">

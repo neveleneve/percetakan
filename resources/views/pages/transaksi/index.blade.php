@@ -86,47 +86,43 @@
                                 </div>
                             @endif
                         </div>
-                        <table class="table table-bordered text-center">
-                            <thead class="table-success">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Kode Transaksi</th>
-                                    <th>Tipe Transaksi</th>
-                                    <th>Total Transaksi</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($transaksi as $item)
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center text-nowrap">
+                                <thead class="table-success">
                                     <tr>
-                                        <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $item->kode_transaksi }}</td>
-                                        <td>{{ ucwords($item->tipe_transaksi) }}</td>
-                                        <td>
-                                            {{ $item->total_transaksi != 0 ? 'Rp ' . number_format($item->total_transaksi, 0, ',', '.') : '-' }}
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('transaksi.show', ['transaksi' => $item->id]) }}"
-                                                class="btn btn-sm btn-outline-success">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                            @if (Auth::user()->role->name == 'Admin')
-                                                <a href="{{ route('item.edit', ['item' => $item->id]) }}"
-                                                    class="btn btn-sm btn-outline-danger">
-                                                    <i class="fa fa-edit"></i>
+                                        <th>#</th>
+                                        <th>Kode Transaksi</th>
+                                        <th>Tipe Transaksi</th>
+                                        <th>Total Transaksi</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($transaksi as $item)
+                                        <tr>
+                                            <td>{{ $loop->index + 1 }}</td>
+                                            <td>{{ $item->kode_transaksi }}</td>
+                                            <td>{{ ucwords($item->tipe_transaksi) }}</td>
+                                            <td>
+                                                {{ $item->total_transaksi != 0 ? 'Rp ' . number_format($item->total_transaksi, 0, ',', '.') : '-' }}
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('transaksi.show', ['transaksi' => $item->id]) }}"
+                                                    class="btn btn-sm btn-outline-success">
+                                                    <i class="fa fa-eye"></i>
                                                 </a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="5">
-                                            <h6 class="fw-bold text-center h4">Data Kosong</h6>
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="5">
+                                                <h6 class="fw-bold text-center h4">Data Kosong</h6>
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

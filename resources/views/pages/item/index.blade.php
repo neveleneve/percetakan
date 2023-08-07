@@ -22,47 +22,49 @@
                                 </a>
                             </div>
                         @endif
-                        <table class="table table-bordered text-center">
-                            <thead class="table-success">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nama</th>
-                                    <th>Satuan</th>
-                                    <th>Harga</th>
-                                    <th>Stok</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($items as $item)
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center text-nowrap">
+                                <thead class="table-success">
                                     <tr>
-                                        <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->satuan }}</td>
-                                        <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
-                                        <td>{{ $item->stok }}</td>
-                                        <td>
-                                            <a href="{{ route('item.show', ['item' => $item->id]) }}"
-                                                class="btn btn-sm btn-outline-success">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                            @if (Auth::user()->role->name == 'Admin')
-                                                <a href="{{ route('item.edit', ['item' => $item->id]) }}"
-                                                    class="btn btn-sm btn-outline-danger">
-                                                    <i class="fa fa-edit"></i>
+                                        <th>#</th>
+                                        <th>Nama</th>
+                                        <th>Satuan</th>
+                                        <th>Harga</th>
+                                        <th>Stok</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($items as $item)
+                                        <tr>
+                                            <td>{{ $loop->index + 1 }}</td>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->satuan }}</td>
+                                            <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
+                                            <td>{{ $item->stok }}</td>
+                                            <td>
+                                                <a href="{{ route('item.show', ['item' => $item->id]) }}"
+                                                    class="btn btn-sm btn-outline-success">
+                                                    <i class="fa fa-eye"></i>
                                                 </a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="6">
-                                            <h6 class="fw-bold text-center h4">Data Kosong</h6>
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                                                @if (Auth::user()->role->name == 'Admin')
+                                                    <a href="{{ route('item.edit', ['item' => $item->id]) }}"
+                                                        class="btn btn-sm btn-outline-danger">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="6">
+                                                <h6 class="fw-bold text-center h4">Data Kosong</h6>
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

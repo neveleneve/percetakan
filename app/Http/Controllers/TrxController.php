@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailTransaksi;
+use App\Models\Item;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
@@ -10,7 +12,7 @@ class TrxController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->only('index', 'show');
-        $this->middleware('role:Admin')->only('edit', 'destroy');
+        $this->middleware('role:Admin')->only('destroy');
     }
 
     public function index()
@@ -23,24 +25,28 @@ class TrxController extends Controller
 
     public function show(Transaksi $transaksi)
     {
+        $lastTransaction = Transaksi::latest('id')->first();
         return view('pages.transaksi.show', [
-            'transaksi' => $transaksi
+            'transaksi' => $transaksi,
+            'last_id' => $lastTransaction,
         ]);
     }
 
-    public function edit(Transaksi $transaksi)
+    public function destroy(Request $request, Transaksi $transaksi)
     {
-        return view('pages.transaksi.edit', [
-            'transaksi' => $transaksi
-        ]);
-    }
+        if ($request->tipe_transaksi == 'masuk') {
+            $jumlah = count($transaksi->detail);
+            for ($i = 0; $i < $jumlah; $i++) {
+                Item::find($transaksi->detail[$i]->item_id)->decrement('stok', $transaksi->detail[$i]->jumlah);
+            }
+        } elseif ($request->tipe_transaksi == 'keluar') {
+            $jumlah = count($transaksi->detail);
+            for ($i = 0; $i < $jumlah; $i++) {
+                Item::find($transaksi->detail[$i]->item_id)->increment('stok', $transaksi->detail[$i]->jumlah);
+            }
+        }
 
-    public function destroy(Transaksi $transaksi)
-    {
-        dd($transaksi);
-        // cek data untuk mengembalikan nilai item apakah dikurangi atau ditambah tergantung tipe transaksi
-        // 
-        // hapus data
+        DetailTransaksi::where('transaksi_id', $transaksi->id)->delete();
         $transaksi->delete();
         return redirect(route('transaksi.index'))->with([
             'message' => 'Data transaksi berhasil dihapus!',

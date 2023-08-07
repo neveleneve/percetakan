@@ -19,7 +19,8 @@ Route::get('/', function () {
     return redirect(route('login'));
 });
 Auth::routes([
-    'register' => false
+    'register' => false,
+    'reset' => false,
 ]);
 
 Route::get('/dashboard',     [App\Http\Controllers\HomeController::class, 'index'])
@@ -44,6 +45,7 @@ Route::resource('transaksi', App\Http\Controllers\TrxController::class)->except(
     'create',
     'store',
     'update',
+    'edit',
 ]);
 
 Route::get('laporan/barang', [App\Http\Controllers\LaporanController::class, 'laporanDaftarBarang'])->name('laporan.barang');

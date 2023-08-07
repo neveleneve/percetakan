@@ -100,9 +100,6 @@
             </form>
         </div>
     </div>
-    <pre>
-        {{ print_r($selecteditems) }}
-    </pre>
 
     @push('livewire-style')
         @livewireStyles

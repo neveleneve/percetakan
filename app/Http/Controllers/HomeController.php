@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -9,14 +10,20 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->only('index');
-        // $this->middleware('auth')->only('show');
-        // $this->middleware('role:Admin')->only('edit', 'update');
-        // $this->middleware('role:Admin')->only('destroy');
-        // $this->middleware('role:Admin')->only('create', 'store');
     }
 
     public function index()
     {
-        return view('home');
+        // $masuk = Transaksi::where('tipe_transaksi', 'masuk')->count();
+        // $keluar = Transaksi::where('tipe_transaksi', 'keluar')->count();
+        $masuk = Transaksi::where('tipe_transaksi', 'masuk')->whereDate('created_at', date('Y-m-d'))->count();
+        $keluar = Transaksi::where('tipe_transaksi', 'keluar')->whereDate('created_at', date('Y-m-d'))->count();
+        $totalkeluar = Transaksi::where('tipe_transaksi', 'keluar')->whereDate('created_at', date('Y-m-d'))->sum('total_transaksi');
+        // dd($totalkeluar);
+        return view('home', [
+            'masuk' => $masuk,
+            'keluar' => $keluar,
+            'totalkeluar' => $totalkeluar,
+        ]);
     }
 }
