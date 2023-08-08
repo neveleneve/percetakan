@@ -43,6 +43,11 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="col-12 col-lg-10">
+                                <span class="text-danger fw-bold">
+                                    Password default user ialah "12345678" (Tanpa tanda kutip)
+                                </span>
+                            </div>
                             <div class="col-12 col-lg-10 text-center mb-3">
                                 <div class="d-grid gap-2">
                                     <button class="btn btn-sm btn-outline-success fw-bold" type="submit">
