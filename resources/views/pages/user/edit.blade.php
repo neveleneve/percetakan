@@ -61,19 +61,21 @@
                                 </div>
                             </div>
                         </form>
-                        <form action="{{ route('user.destroy', $user->id) }}" method="post"
-                            class="row justify-content-center">
-                            @csrf
-                            @method('delete')
-                            <div class="col-12 col-lg-10 text-center mb-3">
-                                <div class="d-grid gap-2">
-                                    <button class="btn btn-sm btn-outline-danger fw-bold" type="submit"
-                                        onclick="return confirm('Hapus Data User?')">
-                                        Hapus Data User
-                                    </button>
+                        @if (Auth::user()->id != $user->id)
+                            <form action="{{ route('user.destroy', $user->id) }}" method="post"
+                                class="row justify-content-center">
+                                @csrf
+                                @method('delete')
+                                <div class="col-12 col-lg-10 text-center mb-3">
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-sm btn-outline-danger fw-bold" type="submit"
+                                            onclick="return confirm('Hapus Data User?')">
+                                            Hapus Data User
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>

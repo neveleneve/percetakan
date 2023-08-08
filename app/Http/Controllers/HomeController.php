@@ -16,8 +16,10 @@ class HomeController extends Controller
     {
         // $masuk = Transaksi::where('tipe_transaksi', 'masuk')->count();
         // $keluar = Transaksi::where('tipe_transaksi', 'keluar')->count();
-        $masuk = Transaksi::where('tipe_transaksi', 'masuk')->whereDate('created_at', date('Y-m-d'))->count();
-        $keluar = Transaksi::where('tipe_transaksi', 'keluar')->whereDate('created_at', date('Y-m-d'))->count();
+        $masuk = Transaksi::where('tipe_transaksi', 'masuk')
+            ->whereDate('created_at', date('Y-m-d'))->count();
+        $keluar = Transaksi::where('tipe_transaksi', 'keluar')
+            ->whereDate('created_at', date('Y-m-d'))->count();
         $totalkeluar = Transaksi::where('tipe_transaksi', 'keluar')->whereDate('created_at', date('Y-m-d'))->sum('total_transaksi');
         // dd($totalkeluar);
         return view('home', [

@@ -107,10 +107,21 @@
                                                 {{ $item->total_transaksi != 0 ? 'Rp ' . number_format($item->total_transaksi, 0, ',', '.') : '-' }}
                                             </td>
                                             <td>
-                                                <a href="{{ route('transaksi.show', ['transaksi' => $item->id]) }}"
-                                                    class="btn btn-sm btn-outline-success">
-                                                    <i class="fa fa-eye"></i>
-                                                </a>
+                                                <form action="{{ route('laporan.cetak') }}" method="post">
+                                                    @csrf
+                                                    <input value="{{ $item->tipe_transaksi }}" type="hidden"
+                                                        name="jenis">
+                                                    <input value="transaksi_{{ $item->tipe_transaksi }}" type="hidden"
+                                                        name="type">
+                                                    <input value="{{ $item->id }}" type="hidden" name="id_transaksi">
+                                                    <a href="{{ route('transaksi.show', ['transaksi' => $item->id]) }}"
+                                                        class="btn btn-sm btn-outline-success">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                    <button type="submit" class="btn btn-sm btn-outline-secondary">
+                                                        <i class="fa fa-print"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @empty

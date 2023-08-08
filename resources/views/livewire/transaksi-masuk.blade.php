@@ -31,7 +31,7 @@
                     <input type="hidden" name="kode_tipe_transaksi" wire:model='tipe.code'>
                     <div class="col-12 col-lg-10 text-center">
                         <label for="gudang" class="fw-bold mb-2">Gudang</label>
-                        <select class="form-select form-select-sm" name="gudang" id="gudang">
+                        <select class="form-select form-select-sm" name="gudang" id="gudang" wire:change>
                             @foreach ($gudang as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach

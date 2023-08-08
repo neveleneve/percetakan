@@ -41,6 +41,12 @@
                                     {{ $transaksi->user->name }}
                                 </p>
                             </div>
+                            <div class="col-12 col-lg-10 text-center mb-3">
+                                <label class="fw-bold mb-2">Tanggal Transaksi</label>
+                                <p>
+                                    {{ date('d/m/Y H:i:s', strtotime($transaksi->created_at)) }}
+                                </p>
+                            </div>
                             @if ($transaksi->tipe_transaksi == 'keluar')
                                 <div class="col-12 col-lg-10 text-center">
                                     <label class="fw-bold mb-2">Total Transaksi</label>
