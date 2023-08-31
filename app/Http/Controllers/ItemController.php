@@ -29,6 +29,7 @@ class ItemController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $validasi = Validator::make($request->all(), [
             'name' => ['required'],
             'satuan' => ['required'],
@@ -42,7 +43,8 @@ class ItemController extends Controller
         } else {
             $item = Item::create([
                 'name' => ucwords(strtolower($request->name)),
-                'satuan' => ucwords(strtolower($request->satuan))
+                'satuan' => ucwords(strtolower($request->satuan)),
+                'harga' => $request->harga
             ]);
             if ($item) {
                 return redirect(route('item.index'))->with([
